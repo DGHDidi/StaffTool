@@ -2,21 +2,19 @@ package com.dghdidi.stafftool;
 
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
-import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
-import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.api.plugin.TabExecutor;
 
-import java.util.ArrayList;
-import java.util.List;
 
-public class PunishCMD extends Command implements TabExecutor, Listener {
+import static com.dghdidi.stafftool.tpCMD.getStrings;
+
+public class PunishCMD extends Command implements TabExecutor {
 
     private final Plugin plugin;
     public PunishCMD(Plugin plugin) {
@@ -27,11 +25,11 @@ public class PunishCMD extends Command implements TabExecutor, Listener {
     @Override
     public void execute(CommandSender sender, String[] args) {
         if (!(sender instanceof ProxiedPlayer)) {
-            sender.sendMessage("该指令只能由玩家执行!");
+            sender.sendMessage(new TextComponent("§c该指令只能由玩家执行!"));
             return;
         }
         if (args.length != 1) {
-            sender.sendMessage("§c用法: /punish <ID>");
+            sender.sendMessage(new TextComponent("§c用法: /punish <ID>"));
             return;
         }
         String ID = args[0];
@@ -115,30 +113,16 @@ public class PunishCMD extends Command implements TabExecutor, Listener {
         LineTwo.addExtra(" ");
         LineTwo.addExtra(MUTE_30D[0]);
 
-        sender.sendMessage("§c---------------------------------");
-        sender.sendMessage("§e§l请选择你需要的处罚:");
+        sender.sendMessage(new TextComponent("§c---------------------------------"));
+        sender.sendMessage(new TextComponent("§e§l请选择你需要的处罚:"));
         sender.sendMessage(LineOne);
         sender.sendMessage(LineTwo);
-        sender.sendMessage("§c---------------------------------");
+        sender.sendMessage(new TextComponent("§c---------------------------------"));
 
     }
 
     @Override
     public Iterable<String> onTabComplete(CommandSender sender, String[] args) {
-        if (args.length == 1) {
-            List<String> playerIDs = new ArrayList<>();
-            for (ProxiedPlayer player : ProxyServer.getInstance().getPlayers()) {
-                playerIDs.add(player.getName());
-            }
-            List<String> matchedIDs = new ArrayList<>();
-            String partialID = args[0].toLowerCase();
-            for (String id : playerIDs) {
-                if (id.toLowerCase().startsWith(partialID)) {
-                    matchedIDs.add(id);
-                }
-            }
-            return matchedIDs;
-        }
-        return null;
+        return getStrings(args);
     }
 }
