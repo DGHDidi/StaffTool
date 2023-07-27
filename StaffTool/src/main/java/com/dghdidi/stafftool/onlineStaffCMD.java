@@ -14,7 +14,7 @@ public class onlineStaffCMD extends Command {
     private final Plugin plugin;
 
     public onlineStaffCMD(Plugin plugin) {
-        super("staff", "staff.online");
+        super("staffs", "staff.online");
         this.plugin = plugin;
     }
 
