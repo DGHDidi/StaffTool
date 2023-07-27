@@ -5,11 +5,14 @@ import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
 import net.md_5.bungee.api.plugin.Plugin;
+import net.md_5.bungee.api.plugin.TabExecutor;
 import net.md_5.bungee.api.scheduler.ScheduledTask;
 
 import java.util.concurrent.TimeUnit;
 
-public class autoMsgCheckCMD extends Command {
+import static com.dghdidi.stafftool.tpCMD.getStrings;
+
+public class autoMsgCheckCMD extends Command implements TabExecutor {
 
     private final Plugin plugin;
     private int counter;
@@ -59,5 +62,10 @@ public class autoMsgCheckCMD extends Command {
             staff.sendMessage(new TextComponent("§a§l查端信息已发送完毕 请判断是否施加处罚"));
             task.cancel();
         }
+    }
+
+    @Override
+    public Iterable<String> onTabComplete(CommandSender sender, String[] args) {
+        return getStrings(args);
     }
 }
