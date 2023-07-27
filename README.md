@@ -7,4 +7,6 @@ Features:
 Usage:
 - /punish (ID)
 - /mp (Args)
+- /tpto (ID)
+- /staff
   
