@@ -11,10 +11,11 @@ public final class StaffTool extends Plugin {
         getLogger().log(Level.INFO, "插件已成功加载");
         PluginManager pluginManager = getProxy().getPluginManager();
         pluginManager.registerCommand(this, new PunishCMD(this));
-        pluginManager.registerCommand(this, new broadCastCMD(this));
-        pluginManager.registerCommand(this, new tpCMD(this));
-        pluginManager.registerCommand(this, new onlineStaffCMD(this));
-        pluginManager.registerCommand(this, new autoMsgCheckCMD(this));
+        pluginManager.registerCommand(this, new BroadCastCMD(this));
+        pluginManager.registerCommand(this, new TpCMD(this));
+        pluginManager.registerCommand(this, new OnlineStaffCMD(this));
+        pluginManager.registerCommand(this, new AutoMsgCheckCMD(this));
+        pluginManager.registerCommand(this, new CancelAmcCMD(this));
     }
 
     @Override

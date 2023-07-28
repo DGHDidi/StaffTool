@@ -12,7 +12,7 @@ import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.api.plugin.TabExecutor;
 
 
-import static com.dghdidi.stafftool.tpCMD.getStrings;
+import static com.dghdidi.stafftool.TpCMD.getStrings;
 
 public class PunishCMD extends Command implements TabExecutor {
 
@@ -126,3 +126,4 @@ public class PunishCMD extends Command implements TabExecutor {
         return getStrings(args);
     }
 }
+
