@@ -1,6 +1,7 @@
 package com.dghdidi.stafftool;
 
 import net.md_5.bungee.api.CommandSender;
+import net.md_5.bungee.api.Title;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
@@ -62,6 +63,7 @@ public class AutoMsgCheckCMD extends Command implements TabExecutor {
                 staff.sendMessage(new TextComponent("§a§l已向玩家§e§l" + targetID + "§a§l发送查端信息 §7(" + counter + "/20)!"));
             }
             player.sendMessage(new TextComponent("§cInf Staff §8> §f您的游戏行为被§e§l检测异常§f, 为创造良好的游戏环境, 需要对您的客户端进行检查," + "请您§e在五分钟内§f添加工作人员QQ: §b" + QQ + ", §e§l无视或退出服务器§f将会被视为作弊§c§l封禁§f, 感谢您的理解和配合!"));
+            sendTitle(player, "§c§l查端通知", "§e请在五分钟内添加QQ§b§l" + QQ, 10, 250, 10);
             counter++;
             try {
                 Thread.sleep(15000);
@@ -76,6 +78,14 @@ public class AutoMsgCheckCMD extends Command implements TabExecutor {
         BookAMC.del(player);
     }
 
+
+    public void sendTitle(ProxiedPlayer player, String title, String subTitle, int fadeIn, int stay, int fadeOut) {
+        Title object = plugin.getProxy().createTitle()
+                .title(new TextComponent(title))
+                .subTitle(new TextComponent(subTitle))
+                .fadeIn(fadeIn).stay(stay).fadeOut(fadeOut);
+        object.send(player);
+    }
 
     @Override
     public Iterable<String> onTabComplete(CommandSender sender, String[] args) {
