@@ -56,7 +56,10 @@ public class TpCMD extends Command implements TabExecutor {
 
     @Override
     public Iterable<String> onTabComplete(CommandSender sender, String[] args) {
-        return getStrings(args);
+        if (args.length != 1)
+            return new ArrayList<>();
+        else
+            return getStrings(args);
     }
 
     public static Iterable<String> getStrings(String[] args) {

@@ -8,6 +8,7 @@ import net.md_5.bungee.api.plugin.Command;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.api.plugin.TabExecutor;
 
+import java.util.ArrayList;
 import java.util.concurrent.Callable;
 import java.util.logging.Level;
 
@@ -89,6 +90,9 @@ public class AutoMsgCheckCMD extends Command implements TabExecutor {
 
     @Override
     public Iterable<String> onTabComplete(CommandSender sender, String[] args) {
-        return getStrings(args);
+        if (args.length != 1)
+            return new ArrayList<>();
+        else
+            return getStrings(args);
     }
 }

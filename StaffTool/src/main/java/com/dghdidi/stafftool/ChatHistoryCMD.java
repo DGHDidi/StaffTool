@@ -4,15 +4,18 @@ import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.plugin.Command;
 import net.md_5.bungee.api.plugin.Plugin;
+import net.md_5.bungee.api.plugin.TabExecutor;
 
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.logging.Level;
 
 import static com.dghdidi.stafftool.StaffTool.connection;
+import static com.dghdidi.stafftool.TpCMD.getStrings;
 
-public class ChatHistoryCMD extends Command {
+public class ChatHistoryCMD extends Command implements TabExecutor {
 
     private final Plugin plugin;
 
@@ -42,7 +45,9 @@ public class ChatHistoryCMD extends Command {
             resultSet.close();
             statement.close();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            plugin.getLogger().log(Level.WARNING, "§c无法连接至数据库, 请检查配置文件");
+            sender.sendMessage(new TextComponent("§c无法连接至数据库, 请检查配置文件"));
+            return;
         }
         int Page = Integer.parseInt(args[1]);
         sender.sendMessage(new TextComponent("§e" + ID + "§a 的聊天记录: §7第" + Page + "页/共" + pageLimit + "页"));
@@ -73,5 +78,13 @@ public class ChatHistoryCMD extends Command {
             sender.sendMessage(new TextComponent("§c抓取聊天记录失败!"));
         }
 
+    }
+
+    @Override
+    public Iterable<String> onTabComplete(CommandSender sender, String[] args) {
+        if (args.length != 1)
+            return new ArrayList<>();
+        else
+            return getStrings(args);
     }
 }

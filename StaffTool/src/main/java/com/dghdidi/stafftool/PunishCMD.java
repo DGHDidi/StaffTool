@@ -8,6 +8,8 @@ import net.md_5.bungee.api.plugin.Command;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.api.plugin.TabExecutor;
 
+import java.util.ArrayList;
+
 import static com.dghdidi.stafftool.TpCMD.getStrings;
 
 public class PunishCMD extends Command implements TabExecutor {
@@ -87,8 +89,10 @@ public class PunishCMD extends Command implements TabExecutor {
 
         sender.sendMessage(new TextComponent("§c---------------------------------"));
         sender.sendMessage(new TextComponent("§e§l请选择你需要的处罚:" + " §b§l" + ID));
-        sender.sendMessage(LineOne);
-        sender.sendMessage(LineTwo);
+        if (sender.hasPermission("staff.punish.ban"))
+            sender.sendMessage(LineOne);
+        if (sender.hasPermission("staff.punish.mute"))
+            sender.sendMessage(LineTwo);
         sender.sendMessage(new TextComponent("§c---------------------------------"));
 
     }
@@ -103,7 +107,10 @@ public class PunishCMD extends Command implements TabExecutor {
 
     @Override
     public Iterable<String> onTabComplete(CommandSender sender, String[] args) {
-        return getStrings(args);
+        if (args.length != 1)
+            return new ArrayList<>();
+        else
+            return getStrings(args);
     }
 }
 

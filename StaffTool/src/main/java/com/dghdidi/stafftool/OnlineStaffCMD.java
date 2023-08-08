@@ -39,12 +39,13 @@ public class OnlineStaffCMD extends Command {
         sender.sendMessage(new TextComponent("§e在线工作人员 §a" + staffs.size() + "人§e:"));
         for (ProxiedPlayer staff : staffs) {
             String name = staff.getName();
+            String server = " §7(" + staff.getServer().getInfo().getName() + ")";
             if (staff.hasPermission("group.admin"))
-                sender.sendMessage(new TextComponent("§c" + name));
+                sender.sendMessage(new TextComponent("§c" + name + server));
             else if (staff.hasPermission("group.mod"))
-                sender.sendMessage(new TextComponent("§2" + name));
+                sender.sendMessage(new TextComponent("§2" + name + server));
             else if (staff.hasPermission("group.helper"))
-                sender.sendMessage(new TextComponent("§9" + name));
+                sender.sendMessage(new TextComponent("§9" + name + server));
         }
 
     }
