@@ -1,0 +1,5 @@
+name: StaffTool
+version: '1.0-SNAPSHOT'
+main: org.dghdidi.stafftool.StaffTool
+depends:
+  - LuckPerms

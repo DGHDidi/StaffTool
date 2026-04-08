@@ -1,0 +1,20 @@
+MySQL:
+  host: "localhost"
+  database: "Minecraft"
+  port: 3306
+  username: "root"
+  password: "123456"
+
+Style:
+  staffPrefix: "§b[员工] "
+  adminPrefix: "§c[管理] "
+  reportStaffPrefix: "§b[员工] §2[举报] §f"
+  reportPlayerPrefix: "§8[§6举报系统§8] §f"
+  playerPrefix: "§cInf Staff §8> §f"
+  teleportDelay(ms): 2000
+
+# 功能开关
+Function:
+  staffChat: true
+  reports: true
+  chatHistory: true
